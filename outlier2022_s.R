@@ -8,15 +8,16 @@ qqPlot(mod.duncan)
 
 influenceIndexPlot(mod.duncan,id=list(n=3))
 #第二張圖可以看出有一個參數minister標準差在3，可能會是一個outlier
-#但經過baffaroni調整後(第三張圖)他的p-value變成0.2了，雖然小，但不顯著為outlier
-
 outlierTest(mod.duncan)
+#但經過baffaroni調整後(第三張圖)他的p-value變成0.2了，雖然小，但不顯著為outlier
 
 influencePlot(mod.duncan,id=list(n=1))
 p=length(mod.duncan$coef)
 n=nrow(Duncan)
 limit1 = (2*p)/n #limit1 for Hat-Values of Bubble plot
 limit2 = (3*p)/n #limit2 for Hat-Values of Bubble plot
+#兩個limit即為泡泡圖中的直的虛線
+#泡泡的半徑為cook distance，看有沒有超過兩個limit
 
 #Check influential case using cook's distance
 plot(cooks.distance(mod.duncan))
