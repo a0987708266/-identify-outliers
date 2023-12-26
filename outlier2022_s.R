@@ -26,7 +26,7 @@ identify(1:n,cooks.distance(mod.duncan), row.names(Duncan))
 
 #Check influential case using dfbetas
 dfbetasPlots(mod.duncan,id.n=2)
-
+#minister會對income造成負影響、對education造成正影響(看DFBETAS)
 
 
 
