@@ -45,7 +45,7 @@ dfbetasPlots(m1,id.n=2)
 #比較去掉minister前後，兩係數的變化
 compareCoefs(mod.duncan,m1,se=F)
 
-#試試看把conductor拿掉
+#conductor變離群值，試試看把conductor拿掉
 newd1 <- newd[!rownames(newd)%in%c('conductor'),]
 m2 <- lm(prestige~income+education,data=newd1)
 influenceIndexPlot(m2,id=list(n=2))
