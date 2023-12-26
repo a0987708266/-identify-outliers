@@ -29,9 +29,9 @@ dfbetasPlots(mod.duncan,id.n=2)
 #minister會對income造成負影響、對education造成正影響(看DFBETAS)
 
 
-
+#來處理minister的離群問題
 Duncan[rownames(Duncan)=='minister',]
-
+#先把minister拿掉
 newd <- Duncan[!rownames(Duncan)%in%c('minister'),]
 m1 <- lm(prestige~income+education,data=newd)
 influenceIndexPlot(m1,id=list(n=2))
@@ -40,9 +40,12 @@ plot(cooks.distance(m1))
 abline(h=4/(n-p), lty=2)
 identify(1:n,cooks.distance(m1), row.names(newd))
 dfbetasPlots(m1,id.n=2)
+#反而是conductor出現離群問題
 
+#比較去掉minister前後，兩係數的變化
 compareCoefs(mod.duncan,m1,se=F)
 
+#試試看把conductor拿掉
 newd1 <- newd[!rownames(newd)%in%c('conductor'),]
 m2 <- lm(prestige~income+education,data=newd1)
 influenceIndexPlot(m2,id=list(n=2))
@@ -50,10 +53,13 @@ n=nrow(newd1)
 plot(cooks.distance(m2))
 abline(h=4/(n-p), lty=2)
 identify(1:n,cooks.distance(m2), row.names(newd1))
+#看出又有離群問題，這次是reporter
 dfbetasPlots(m2,id.n=2)
 
+#比較去掉conductor前後，兩係數的變化
 compareCoefs(m1,m2,se=F)
 
+#試試看把reporter拿掉
 newd2 <- newd1[!rownames(newd1)%in%c('reporter'),]
 m3 <- lm(prestige~income+education,data=newd2)
 influenceIndexPlot(m3,id.n=3)
@@ -63,7 +69,11 @@ abline(h=4/(n-p), lty=2)
 identify(1:n,cooks.distance(m3), row.names(newd2))
 dfbetaPlots(m3,id.n=3)
 
+#比較去掉reporter前後，兩係數的變化
 compareCoefs(m2,m3,se=F)
+#前後的係數變化已經很小，可以停止
+
+#最後要標註說明我們拿掉了三個樣本(minister, conductor, reporter)
 
 
 
