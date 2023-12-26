@@ -59,7 +59,7 @@ dfbetasPlots(m2,id.n=2)
 #比較去掉conductor前後，兩係數的變化
 compareCoefs(m1,m2,se=F)
 
-#試試看把reporter拿掉
+#reporter變離群值，試試看把reporter拿掉
 newd2 <- newd1[!rownames(newd1)%in%c('reporter'),]
 m3 <- lm(prestige~income+education,data=newd2)
 influenceIndexPlot(m3,id.n=3)
