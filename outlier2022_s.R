@@ -73,7 +73,8 @@ dfbetaPlots(m3,id.n=3)
 compareCoefs(m2,m3,se=F)
 #前後的係數變化已經很小，可以停止
 
-#最後要標註說明我們拿掉了三個樣本(minister, conductor, reporter)
+#最後要標註說明我們拿掉了三個樣本
+#(minister, conductor, reporter)三個樣本在流程中被檢定為離群值，故剔除
 
 
 
