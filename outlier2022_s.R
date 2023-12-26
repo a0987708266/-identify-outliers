@@ -7,6 +7,8 @@ residualPlot(mod.duncan,quadratic=F)
 qqPlot(mod.duncan)
 
 influenceIndexPlot(mod.duncan,id=list(n=3))
+#第二張圖可以看出有一個參數minister標準差在3，可能會是一個outlier
+#但經過baffaroni調整後(第三張圖)他的p-value變成0.2了，雖然小，但不顯著為outlier
 
 outlierTest(mod.duncan)
 
